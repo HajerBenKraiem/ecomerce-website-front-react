@@ -17,7 +17,9 @@ const Footer = () => {
 
                 </div>
                 <div className='detail'>
-                    <p> we are a team of designers and developers that create hight quality wordpress</p>
+                    <p> Innovation in Every Click</p>
+                    <p> Discover, Shop, Enjoy</p>
+                    <p> Bringing the Mall to Your Screen</p>
                     <div className='icon'>
                         <li> <BiLogoFacebook/></li>
                         <li> <FaInstagramSquare/></li>

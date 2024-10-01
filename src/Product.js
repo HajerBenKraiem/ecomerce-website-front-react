@@ -3,13 +3,13 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsEye } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillCloseCircle } from 'react-icons/ai';
-//import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import Productdetail from './Productdetail'
 import './Product.css'
-const Product  = ({product, setProduct, detail, view, close, setClose}) => {
+const Product  = ({product, setProduct, detail, view, close, setClose,addtocart}) => {
 
 
-   // const { loginWithRedirect,isAuthenticated} = useAuth0();
+    const { loginWithRedirect,isAuthenticated} = useAuth0();
    // const [product,setProduct] = useState(Productdetail)
     const filtterproduct = (product) =>
     {
@@ -83,12 +83,20 @@ const Product  = ({product, setProduct, detail, view, close, setClose}) => {
                                           <img src={curElm.Img} alt={curElm.Title}></img>
                                           <div className='icon'>
                                             
-                                                
+                                                {
+                                                    isAuthenticated ?
+                                                    <li onClick={() => addtocart (curElm)}><AiOutlineShoppingCart /></li>
+                                                    :
+                                                    <li onClick={() => loginWithRedirect }><AiOutlineShoppingCart /></li>
+                                                    
+
+                                                }
+                                                <li onClick={() => view (curElm)}><BsEye /></li>
                                       
                                                 
-                                                <li ><AiOutlineShoppingCart /></li>
+                                                
                                             
-                                            <li onClick={() => view (curElm)}><BsEye /></li>
+                                            
                                             <li><AiOutlineHeart /></li>                                     
                                           </div>
                                         </div>

@@ -5,7 +5,7 @@ import {FiTruck } from 'react-icons/fi';
 import {BsCurrencyDollar } from 'react-icons/bs';
 import {FaPercent } from 'react-icons/fa';
 import {BsHeadphones } from 'react-icons/bs';
-import {AiOutlineShoppingCart } from 'react-icons/ai';
+import {AiOutlineShoppingCart,AiFillCloseCircle } from 'react-icons/ai';
 
 import {AiOutlineEye } from 'react-icons/ai';
 import {AiOutlineHeart} from 'react-icons/ai';
@@ -14,10 +14,50 @@ import './Home.css'
 
 import  Homeproduct from './Homeproduct';
 
-const Home = () => {
+const Home =({detail, view, close, setClose , addtocart}) => {
   const [Homeproducts,setHomeProducts]= useState(Homeproduct)
   return (
    <>
+    {
+        close ?
+        <div className='product_detail'>
+        <div className='container'>
+        
+            <button onClick={() => setClose(false)} className='closebtn'><AiFillCloseCircle/></button>
+            {
+                detail.map((curElm) => 
+                {
+                    return(
+                        <div className='productbox'>
+                            <div className='img-box'>
+                                <img src={curElm.Img} alt={curElm.Title}></img>
+                            </div>
+                            <div className='detail'>
+                                <h4>{curElm.Cat}</h4>
+                                <h2>{curElm.Title}</h2>
+                                <p>A Screen Everyone Will Love: Whether your family is streaming or video chatting with friends tablet A8... </p>
+                                <h3>{curElm.Price}</h3>
+                                <button>Add To Cart</button>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+            <div className='productbox'></div>
+        </div>
+    </div>: null 
+    } 
+
+
+
+
+
+
+
+
+
+
+
    <div className='top_banner'>
     <div className='container'>
       <div className='detail'>
@@ -161,8 +201,8 @@ const Home = () => {
                    <div className='img_box'>
                        <img src={curElm.Img} alt={curElm.Title}></img>
                         <div className='icon'>
-                          <li> <AiOutlineShoppingCart/></li>
-                          <li> < AiOutlineEye/></li>
+                        <li onClick={() => addtocart (curElm)}> <AiOutlineShoppingCart/></li>
+                          <li onClick={()=>view (curElm)}> < AiOutlineEye/></li>
                           <li> <AiOutlineHeart/></li>
                         </div>
                    </div>
